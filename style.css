@@ -61,8 +61,8 @@ main h1 {
   text-align: right;
 }
 
-h1, h2, p {
-  font-family: serif;
+h1, h2, p, #wrapper li {
+  font-family: Garamond, serif;
 }
 
 #wrapper li {
@@ -70,5 +70,5 @@ h1, h2, p {
 }
 
 #store-data li {
-  font-family: sans-serif;
+  font-family: 'Gill Sans', sans-serif;
 }
