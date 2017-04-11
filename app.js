@@ -144,7 +144,7 @@ function printStoreSalesSimsList(store) {
 
   if (position) {
     var container = document.createElement('div');
-    container.setAttribute('class', 'sales-list')
+    container.setAttribute('class', 'sales-list');
 
     var locationHeading = document.createElement('h2');
     locationHeading.textContent = store.location;
@@ -160,7 +160,7 @@ function printStoreSalesSimsList(store) {
       hrCookiesEntry = document.createElement('li');
       hour = store.openAt + i;
       hrCookiesEntry.textContent = numToTime(hour) + ': ' + store.cookiesHrs[i] + ' cookies';
-      hrsCookiesList.appendChild(hrCookiesEntry)
+      hrsCookiesList.appendChild(hrCookiesEntry);
       totCookies += store.cookiesHrs[i];
     }
     var totCookiesEntry = document.createElement('li');
