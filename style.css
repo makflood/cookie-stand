@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-  background: #DCB46D linear-gradient(#DCB46D, #BD5E39) fixed;
+  background: #159fc1 linear-gradient(#159fc1, #05588c) fixed;
 }
 
 .right {
@@ -23,26 +23,38 @@ body {
 }
 
 #wrapper {
+  height: 100%;
   min-height: 100%;
   width: 840px;
   max-width: 70%;
   margin: 0 auto;
-  background: #EFEFEF;
+  /*background: red;*/
   position: relative;
 }
 
 #fish {
-  height: 90%;
+  max-height: 90%;
   width: auto;
-  position: absolute;
-  left: -14%;
-  top: 5%;
-  z-index: 100;
+  margin-top: 15%;
+  max-width: 100%;
+  position: relative;
+  /*top: 50%;
+  transition: translate(-50%, -50%);*/
+}
+
+aside {
+  width: 20%;
+  height: 100%;
+  position: relative;
+  /*background: black;*/
 }
 
 main {
-  width: 90%;
-  margin-left: 10%;
+  height: 100%;
+  width: 78%;
+  background: #EFEFEF;
+  margin-left: 2%;
+  padding: 5%;
 }
 
 main h1 {
@@ -51,6 +63,10 @@ main h1 {
 
 h1, h2, p {
   font-family: serif;
+}
+
+#wrapper li {
+  list-style: none;
 }
 
 #store-data li {
