@@ -1,5 +1,28 @@
 'use strict';
 
+function Store(location, minCustHr, maxCustHr, avgCookieCust) {
+  this.location = location;
+  this.openAt = 6; // 6 am
+  this.closeAt = 20; // 8 pm
+  this.minCustHr = minCustHr;
+  this.maxCustHr = maxCustHr;
+  this.avgCookieCust = avgCookieCust;
+  this.cookiesHrs = [];
+}
+
+Store.prototype.randomCustHr = function() {
+  return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
+};
+
+Store.prototype.simCookiesHrs = function() {
+  this.cookiesHrs = [];
+  var cookiesBought;
+  for (var i = 0; i < (this.closeAt - this.openAt); i++) {
+    cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
+    this.cookiesHrs.push(cookiesBought);
+  }
+};
+
 var pikeStore = {
   location: '1st and Pike',
   openAt: 6, // 6 am
