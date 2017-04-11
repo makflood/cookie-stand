@@ -1,0 +1,101 @@
+* {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #159fc1 linear-gradient(#159fc1, #05588c) fixed;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.clear-fix {
+  clear: both;
+}
+
+#wrapper {
+  min-height: 100%;
+  width: 840px;
+  max-width: 70%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#fish {
+  max-height: 90%;
+  width: auto;
+  max-width: 100%;
+}
+
+aside {
+  margin-top: 5%;
+  width: 20%;
+  height: 100%;
+  position: relative;
+}
+
+main {
+  height: 100%;
+  width: 78%;
+  background: #EFEFEF;
+  margin-left: 2%;
+  padding: 5%;
+}
+
+@font-face {
+  font-family: 'Cinzel Decorative', cursive;
+  src: url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:bold,black');
+}
+
+h1, h2, p, #wrapper li {
+  font-family: Garamond, serif;
+  margin-bottom: 2%;
+}
+
+h1, h2 {
+  color: #595A2C;
+}
+
+main h1 {
+  font-family: 'Cinzel Decorative', Garamond, serif;
+  font-size: 3.3em;
+  text-align: right;
+  color: #f44b13;
+  line-height: 1.1em;
+  margin-bottom: 5%;
+}
+
+h2 {
+  font-size: 2em;
+  line-height: .95em;
+}
+
+p, li {
+  font-size: 1.2em;
+}
+
+h2 + p, #wrapper li {
+  padding-left: 2%;
+}
+
+#wrapper li {
+  list-style: none;
+}
+
+#store-data li {
+  font-family: 'Gill Sans', sans-serif;
+  font-weight: lighter;
+}
