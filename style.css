@@ -8,3 +8,27 @@
 html, body {
   height: 100%;
 }
+
+body {
+  background: #DCB46D linear-gradient(#DCB46D, #BD5E39) fixed;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+#wrapper {
+  width: 70%;
+  margin: 0 auto;
+  background: white;
+
+}
+
+#fish {
+  height: 100%;
+  width: auto;
+}
