@@ -1,5 +1,6 @@
 'use strict';
 
+/** Creates a Store with a string for a location name, the minimum customers per hour, maximum cusomers per hour, and average cookies per customer **/
 function Store(location, minCustHr, maxCustHr, avgCookieCust) {
   this.location = location;
   this.openAt = 6; // 6 am
@@ -10,10 +11,12 @@ function Store(location, minCustHr, maxCustHr, avgCookieCust) {
   this.cookiesHrs = [];
 }
 
+/** Returns a random number of customers for one hour at the store **/
 Store.prototype.randomCustHr = function() {
   return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
 };
 
+/** Simulates the number of cookies bought in each hour of a work day **/
 Store.prototype.simCookiesHrs = function() {
   this.cookiesHrs = [];
   var cookiesBought;
@@ -23,130 +26,30 @@ Store.prototype.simCookiesHrs = function() {
   }
 };
 
-// var pikeStore = {
-//   location: '1st and Pike',
-//   openAt: 6, // 6 am
-//   closeAt: 20, // 8 pm
-//   minCustHr: 23,
-//   maxCustHr: 65,
-//   avgCookieCust: 6.3,
-//   cookiesHrs: [],
-//
-//   // calculates random number of customers for one hour
-//   randomCustHr: function() {
-//     return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
-//   },
-//
-//   // simulates the number of cookies bought in each hour of a work day
-//   simCookiesHrs: function() {
-//     this.cookiesHrs = [];
-//     var cookiesBought;
-//     for (var i = 0; i < (this.closeAt - this.openAt); i++) {
-//       cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
-//       this.cookiesHrs.push(cookiesBought);
-//     }
-//   },
-// };
-//
-// var airportStore = {
-//   location: 'SeaTac Airport',
-//   openAt: 6, // 6 am
-//   closeAt: 20, // 8 pm
-//   minCustHr: 3,
-//   maxCustHr: 24,
-//   avgCookieCust: 1.2,
-//   cookiesHrs: [],
-//
-//   // calculates random number of customers for one hour
-//   randomCustHr: function() {
-//     return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
-//   },
-//
-//   // simulates the number of cookies bought in each hour of a work day
-//   simCookiesHrs: function() {
-//     this.cookiesHrs = [];
-//     var cookiesBought;
-//     for (var i = 0; i < (this.closeAt - this.openAt); i++) {
-//       cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
-//       this.cookiesHrs.push(cookiesBought);
-//     }
-//   },
-// };
-//
-// var centerStore = {
-//   location: 'Seattle Center',
-//   openAt: 6, // 6 am
-//   closeAt: 20, // 8 pm
-//   minCustHr: 11,
-//   maxCustHr: 38,
-//   avgCookieCust: 3.7,
-//   cookiesHrs: [],
-//
-//   // calculates random number of customers for one hour
-//   randomCustHr: function() {
-//     return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
-//   },
-//
-//   // simulates the number of cookies bought in each hour of a work day
-//   simCookiesHrs: function() {
-//     this.cookiesHrs = [];
-//     var cookiesBought;
-//     for (var i = 0; i < (this.closeAt - this.openAt); i++) {
-//       cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
-//       this.cookiesHrs.push(cookiesBought);
-//     }
-//   },
-// };
-//
-// var capitolStore = {
-//   location: 'Capitol Hill',
-//   openAt: 6, // 6 am
-//   closeAt: 20, // 8 pm
-//   minCustHr: 20,
-//   maxCustHr: 38,
-//   avgCookieCust: 2.3,
-//   cookiesHrs: [],
-//
-//   // calculates random number of customers for one hour
-//   randomCustHr: function() {
-//     return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
-//   },
-//
-//   // simulates the number of cookies bought in each hour of a work day
-//   simCookiesHrs: function() {
-//     this.cookiesHrs = [];
-//     var cookiesBought;
-//     for (var i = 0; i < (this.closeAt - this.openAt); i++) {
-//       cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
-//       this.cookiesHrs.push(cookiesBought);
-//     }
-//   },
-// };
-//
-// var alkiStore = {
-//   location: 'Alki',
-//   openAt: 6, // 6 am
-//   closeAt: 20, // 8 pm
-//   minCustHr: 2,
-//   maxCustHr: 16,
-//   avgCookieCust: 4.6,
-//   cookiesHrs: [],
-//
-//   // calculates random number of customers for one hour
-//   randomCustHr: function() {
-//     return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
-//   },
-//
-//   // simulates the number of cookies bought in each hour of a work day
-//   simCookiesHrs: function() {
-//     this.cookiesHrs = [];
-//     var cookiesBought;
-//     for (var i = 0; i < (this.closeAt - this.openAt); i++) {
-//       cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
-//       this.cookiesHrs.push(cookiesBought);
-//     }
-//   },
-// };
+/** Returns a tr element refernence with the location name, all the simulated cookie data and the total for the day **/
+Store.prototype.render = function() {
+  var cookiesDayRow = document.createElement('tr');
+  cookiesDayRow.setAttribute('class', 'sales-data');
+
+  var locationCell = document.createElement('td');
+  locationCell.textContent = this.location;
+  cookiesDayRow.appendChild(locationCell);
+
+  this.simCookiesHrs(); // activate simulation of cookies
+  var cookiesCell;
+  var totCookies = 0;
+  for (var i = 0; i < this.cookiesHrs.length; i++) {
+    cookiesCell = document.createElement('td');
+    cookiesCell.textContent = this.cookiesHrs[i];
+    cookiesDayRow.appendChild(cookiesCell);
+    totCookies += this.cookiesHrs[i];
+  }
+  var totCookiesCell = document.createElement('td');
+  totCookiesCell.textContent = totCookies;
+  cookiesDayRow.appendChild(totCookiesCell);
+
+  return cookiesDayRow;
+};
 
 /** turns the number of hours into an am/pm time **/
 function numToTime(num) {
