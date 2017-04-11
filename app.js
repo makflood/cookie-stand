@@ -17,8 +17,9 @@ var pikeStore = {
   // simulates the number of cookies bought in each hour of a work day
   simCookiesHrs: function() {
     this.cookiesHrs = [];
+    var cookiesBought
     for (var i = 0; i <= (this.closeAt - this.openAt); i++) {
-      var cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
+      cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
       this.cookiesHrs.push(cookiesBought);
     }
   },
@@ -41,8 +42,9 @@ var airportStore = {
   // simulates the number of cookies bought in each hour of a work day
   simCookiesHrs: function() {
     this.cookiesHrs = [];
+    var cookiesBought
     for (var i = 0; i <= (this.closeAt - this.openAt); i++) {
-      var cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
+      cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
       this.cookiesHrs.push(cookiesBought);
     }
   },
@@ -65,8 +67,9 @@ var centerStore = {
   // simulates the number of cookies bought in each hour of a work day
   simCookiesHrs: function() {
     this.cookiesHrs = [];
+    var cookiesBought
     for (var i = 0; i <= (this.closeAt - this.openAt); i++) {
-      var cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
+      cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
       this.cookiesHrs.push(cookiesBought);
     }
   },
@@ -89,8 +92,9 @@ var capitolStore = {
   // simulates the number of cookies bought in each hour of a work day
   simCookiesHrs: function() {
     this.cookiesHrs = [];
+    var cookiesBought
     for (var i = 0; i <= (this.closeAt - this.openAt); i++) {
-      var cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
+      cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
       this.cookiesHrs.push(cookiesBought);
     }
   },
@@ -113,11 +117,54 @@ var alkiStore = {
   // simulates the number of cookies bought in each hour of a work day
   simCookiesHrs: function() {
     this.cookiesHrs = [];
+    var cookiesBought
     for (var i = 0; i <= (this.closeAt - this.openAt); i++) {
-      var cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
+      cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
       this.cookiesHrs.push(cookiesBought);
     }
   },
 };
 
 var storeLocations = [pikeStore, airportStore, centerStore, capitolStore, alkiStore];
+
+/** turns the number of hours into an am/pm time **/
+function numToTime(num) {
+  if (num == 0) {
+    return '12am';
+  } else if (num <= 12) {
+    return num + 'am';
+  } else {
+    return (num - 12) + 'pm';
+  }
+}
+
+/** prints an unordered list of the hourly sale simulations to the page **/
+function printLocationSims(store) {
+  var position = document.getElementById('store-data');
+
+  var container = document.createElement('div');
+  container.setAttribute('class', 'sales-list')
+
+  var locationHeading = document.createElement('h2');
+  locationHeading.textContent = store.location;
+  container.appendChild(locationHeading);
+  var hrsCookiesList = document.createElement('ul');
+  container.appendChild(hrsCookiesList);
+
+  store.simCookiesHrs(); // activate simulation of cookies
+  var hrCookiesEntry;
+  var hour;
+  var totCookies = 0;
+  for (var i = 0; i <= (store.closeAt - store.openAt); i++) {
+    hrCookiesEntry = document.createElement('li');
+    hour = store.openAt + i;
+    hrCookiesEntry.textContent = numToTime(hour) + ': ' + store.cookiesHrs[i] + ' cookies';
+    hrsCookiesList.appendChild(hrCookiesEntry)
+    totCookies += store.cookiesHrs[i];
+  }
+  var totCookiesEntry = document.createElement('li');
+  totCookiesEntry.textContent = 'Total: ' + totCookies + ' cookies';
+  hrsCookiesList.appendChild(totCookiesEntry);
+
+  position.appendChild(container);
+}
