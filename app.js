@@ -139,7 +139,7 @@ function numToTime(num) {
 }
 
 /** prints an unordered list of the hourly sale simulations to the page **/
-function printLocationSims(store) {
+function printStoreSalesSimsList(store) {
   var position = document.getElementById('store-data');
 
   var container = document.createElement('div');
@@ -167,4 +167,9 @@ function printLocationSims(store) {
   hrsCookiesList.appendChild(totCookiesEntry);
 
   position.appendChild(container);
+}
+
+/** PRINTS THE LISTS TO THE PAGE **/
+for (var i = 0; i < storeLocations.length; i++) {
+  printStoreSalesSimsList(storeLocations[i]);
 }
