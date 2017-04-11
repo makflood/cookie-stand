@@ -27,30 +27,24 @@ body {
 }
 
 #wrapper {
-  height: 100%;
   min-height: 100%;
   width: 840px;
   max-width: 70%;
   margin: 0 auto;
-  /*background: red;*/
   position: relative;
 }
 
 #fish {
   max-height: 90%;
   width: auto;
-  margin-top: 15%;
   max-width: 100%;
-  position: relative;
-  /*top: 50%;
-  transition: translate(-50%, -50%);*/
 }
 
 aside {
+  margin-top: 5%;
   width: 20%;
   height: 100%;
   position: relative;
-  /*background: black;*/
 }
 
 main {
@@ -61,12 +55,40 @@ main {
   padding: 5%;
 }
 
-main h1 {
-  text-align: right;
+@font-face {
+  font-family: 'Cinzel Decorative', cursive;
+  src: url('https://fonts.googleapis.com/css?family=Cinzel+Decorative');
 }
 
 h1, h2, p, #wrapper li {
   font-family: Garamond, serif;
+  margin-bottom: 2%;
+}
+
+h1, h2 {
+  color: #595A2C;
+}
+
+main h1 {
+  font-family: 'Cinzel Decorative', Garamond, serif;
+  font-size: 3.3em;
+  text-align: right;
+  color: #f44b13;
+  line-height: 1.1em;
+  margin-bottom: 5%;
+}
+
+h2 {
+  font-size: 2em;
+  line-height: .95em;
+}
+
+p, li {
+  font-size: 1.2em;
+}
+
+h2 + p, #wrapper li {
+  padding-left: 2%;
 }
 
 #wrapper li {
@@ -75,4 +97,5 @@ h1, h2, p, #wrapper li {
 
 #store-data li {
   font-family: 'Gill Sans', sans-serif;
+  font-weight: lighter;
 }
