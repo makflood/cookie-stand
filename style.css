@@ -50,7 +50,7 @@ aside {
 main {
   height: 100%;
   width: 78%;
-  background: #EFEFEF;
+  background: #f4fafc;
   margin-left: 2%;
   padding: 5%;
 }
@@ -100,7 +100,39 @@ h2 + p, #wrapper li {
   list-style: none;
 }
 
+table {
+  width: auto;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
 td, th {
   font-family: 'Gill Sans', sans-serif;
+  text-align: center;
+  padding: 2px;
+  padding-bottom: 5px;
+  width: 40px;
+}
+
+tr td:first-child, tr th:first-child {
+  font-weight: normal;
+  text-align: right;
+  width: 103px;
+}
+
+.head-row {
+  vertical-align: bottom;
+
+}
+
+th {
+
+}
+
+td {
   font-weight: lighter;
+}
+
+table tr:nth-child(even) {
+  background-color: #d7dcdd;
 }

@@ -78,7 +78,7 @@ function renderSalesTableHead(table, store) {
     hourCell.textContent = numToTime(store.openAt + i);
     headRow.appendChild(hourCell);
   }
-  var totCookiesCell = document.createElement('td');
+  var totCookiesCell = document.createElement('th');
   totCookiesCell.textContent = 'Daily Location Total';
   headRow.appendChild(totCookiesCell);
 
@@ -122,6 +122,10 @@ function printStoresSimsTable(stores) {
   var position = document.getElementById('store-data');
 
   if (position) {
+    var tableTitle = document.createElement('h2');
+    tableTitle.textContent = 'Cookies Needed By Location Each Day';
+    position.appendChild(tableTitle);
+
     var simCookieTable = document.createElement('table');
     renderSalesTableHead(simCookieTable, stores[0]);
     for (var i = 0; i < stores.length; i++) {
