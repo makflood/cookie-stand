@@ -122,11 +122,6 @@ tr td:first-child, tr th:first-child {
 
 .head-row {
   vertical-align: bottom;
-
-}
-
-th {
-
 }
 
 td {
@@ -135,4 +130,10 @@ td {
 
 table tr:nth-child(even) {
   background-color: #d7dcdd;
+}
+
+.full-width {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 }
