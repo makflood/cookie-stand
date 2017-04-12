@@ -65,6 +65,7 @@ function numToTime(num) {
   }
 }
 
+/** adds the header row of times to the given table based on the hours of a given Store **/
 function renderSalesTableHead(table, store) {
   var headRow = document.createElement('tr');
   headRow.setAttribute('class', 'head-row');
@@ -84,7 +85,39 @@ function renderSalesTableHead(table, store) {
   table.appendChild(headRow);
 }
 
-/** prints an unordered list of the hourly sale simulations to the page **/
+/** adds the footer row of totals to the given table based on an array of Stores **/
+function renderTotalsFoot(table, stores) {
+  var footRow = document.createElement('tr');
+  footRow.setAttribute('class', 'totals-row');
+
+  var totalCell = document.createElement('td');
+  totalCell.setAttribute('class', 'tot-cell');
+  totalCell.textContent = 'Totals';
+  footRow.appendChild(totalCell);
+
+  var modelStore = stores[0];
+
+  var totCookiesCell;
+  var totForHour;
+  var totForDay = 0;
+  for (var i = 0; i < modelStore.cookiesHrs.length; i++) {
+    totCookiesCell = document.createElement('td');
+    totForHour = 0;
+    for (var j = 0; j < stores.length; j++) {
+      totForHour += stores[j].cookiesHrs[i];
+      totForDay += stores[j].cookiesHrs[i];
+    }
+    totCookiesCell.textContent = totForHour;
+    footRow.appendChild(totCookiesCell);
+  }
+  var totDayCookiesCell = document.createElement('td');
+  totDayCookiesCell.textContent = totForDay;
+  footRow.appendChild(totDayCookiesCell);
+
+  table.appendChild(footRow);
+}
+
+/** prints an table of the hourly sale simulations to the page **/
 function printStoresSimsTable(stores) {
   var position = document.getElementById('store-data');
 
@@ -96,6 +129,8 @@ function printStoresSimsTable(stores) {
     for (var i = 0; i < stores.length; i++) {
       stores[i].render(simCookieTable);
     }
+
+    renderTotalsFoot(simCookieTable, stores);
     // container.setAttribute('class', 'sales-list');
     //
     // var locationHeading = document.createElement('h2');
