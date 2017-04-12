@@ -87,8 +87,13 @@ function renderSalesTableHead(table, store) {
 
 /** adds the footer row of totals to the given table based on an array of Stores **/
 function renderTotalsFoot(table, stores) {
-  var footRow = document.createElement('tr');
-  footRow.setAttribute('class', 'totals-row');
+  var footRow = document.getElementById('totals-row');
+  console.log(footRow);
+  if (footRow) {
+    footRow.parentNode.removeChild(footRow);
+  }
+  footRow = document.createElement('tr');
+  footRow.setAttribute('id', 'totals-row');
 
   var totalCell = document.createElement('td');
   totalCell.setAttribute('class', 'tot-cell');
@@ -139,8 +144,9 @@ function printStoresSimsTable(stores) {
   }
 }
 
+/** on submit event, creates a new CookieStore object from user input and adds the store to the table **/
 function handleAddStoreSubmit(event) {
-  event.preventDefault();
+  event.preventDefault(); //no page reload
 
   var form = event.target;
 
@@ -162,7 +168,7 @@ function handleAddStoreSubmit(event) {
   storeLocations.push(store);
 
   store.render(simCookieTable);
-
+  renderTotalsFoot(simCookieTable, storeLocations);
 }
 
 /** PRINTS THE LISTS TO THE PAGE **/
@@ -176,5 +182,6 @@ var storeLocations = [pikeStore, airportStore, centerStore, capitolStore, alkiSt
 
 var simCookieTable = printStoresSimsTable(storeLocations);
 
+/** HANDLES THE FORM **/
 var addStoreForm = document.getElementById('add-store');
 addStoreForm.addEventListener('submit', handleAddStoreSubmit);
