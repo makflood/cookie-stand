@@ -26,12 +26,13 @@ Store.prototype.simCookiesHrs = function() {
   }
 };
 
-/** Returns a tr element refernence with the location name, all the simulated cookie data and the total for the day **/
-Store.prototype.render = function() {
+/** Given a table element reference, adds a tr element with the location name, all the simulated cookie data and the total for the day to the table **/
+Store.prototype.render = function(table) {
   var cookiesDayRow = document.createElement('tr');
   cookiesDayRow.setAttribute('class', 'sales-data');
 
   var locationCell = document.createElement('td');
+  locationCell.setAttribute('class', 'loc-cell');
   locationCell.textContent = this.location;
   cookiesDayRow.appendChild(locationCell);
 
@@ -48,7 +49,7 @@ Store.prototype.render = function() {
   totCookiesCell.textContent = totCookies;
   cookiesDayRow.appendChild(totCookiesCell);
 
-  return cookiesDayRow;
+  table.appendChild(cookiesDayRow);
 };
 
 /** turns the number of hours into an am/pm time **/
@@ -64,36 +65,61 @@ function numToTime(num) {
   }
 }
 
+function renderSalesTableHead(table, store) {
+  var headRow = document.createElement('tr');
+  headRow.setAttribute('class', 'head-row');
+
+  headRow.appendChild(document.createElement('th')); //empty cell
+
+  var hourCell;
+  for (var i = 0; i < (store.closeAt - store.openAt); i++) {
+    hourCell = document.createElement('th');
+    hourCell.textContent = numToTime(store.openAt + i);
+    headRow.appendChild(hourCell);
+  }
+  var totCookiesCell = document.createElement('td');
+  totCookiesCell.textContent = 'Daily Location Total';
+  headRow.appendChild(totCookiesCell);
+
+  table.appendChild(headRow);
+}
+
 /** prints an unordered list of the hourly sale simulations to the page **/
-function printStoreSalesSimsList(store) {
+function printStoresSimsTable(stores) {
   var position = document.getElementById('store-data');
 
   if (position) {
-    var container = document.createElement('div');
-    container.setAttribute('class', 'sales-list');
+    var simCookieTable = document.createElement('table');
 
-    var locationHeading = document.createElement('h2');
-    locationHeading.textContent = store.location;
-    container.appendChild(locationHeading);
-    var hrsCookiesList = document.createElement('ul');
-    container.appendChild(hrsCookiesList);
+    renderSalesTableHead(simCookieTable, stores[0]);
 
-    store.simCookiesHrs(); // activate simulation of cookies
-    var hrCookiesEntry;
-    var hour;
-    var totCookies = 0;
-    for (var i = 0; i < store.cookiesHrs.length; i++) {
-      hrCookiesEntry = document.createElement('li');
-      hour = store.openAt + i;
-      hrCookiesEntry.textContent = numToTime(hour) + ': ' + store.cookiesHrs[i] + ' cookies';
-      hrsCookiesList.appendChild(hrCookiesEntry);
-      totCookies += store.cookiesHrs[i];
+    for (var i = 0; i < stores.length; i++) {
+      stores[i].render(simCookieTable);
     }
-    var totCookiesEntry = document.createElement('li');
-    totCookiesEntry.textContent = 'Total: ' + totCookies + ' cookies';
-    hrsCookiesList.appendChild(totCookiesEntry);
+    // container.setAttribute('class', 'sales-list');
+    //
+    // var locationHeading = document.createElement('h2');
+    // locationHeading.textContent = store.location;
+    // container.appendChild(locationHeading);
+    // var hrsCookiesList = document.createElement('ul');
+    // container.appendChild(hrsCookiesList);
+    //
+    // store.simCookiesHrs(); // activate simulation of cookies
+    // var hrCookiesEntry;
+    // var hour;
+    // var totCookies = 0;
+    // for (var i = 0; i < store.cookiesHrs.length; i++) {
+    //   hrCookiesEntry = document.createElement('li');
+    //   hour = store.openAt + i;
+    //   hrCookiesEntry.textContent = numToTime(hour) + ': ' + store.cookiesHrs[i] + ' cookies';
+    //   hrsCookiesList.appendChild(hrCookiesEntry);
+    //   totCookies += store.cookiesHrs[i];
+    // }
+    // var totCookiesEntry = document.createElement('li');
+    // totCookiesEntry.textContent = 'Total: ' + totCookies + ' cookies';
+    // hrsCookiesList.appendChild(totCookiesEntry);
 
-    position.appendChild(container);
+    position.appendChild(simCookieTable);
   }
 }
 
@@ -106,6 +132,7 @@ var alkiStore = new Store('Alki', 2, 16, 4.6);
 
 var storeLocations = [pikeStore, airportStore, centerStore, capitolStore, alkiStore];
 
-for (var i = 0; i < storeLocations.length; i++) {
-  printStoreSalesSimsList(storeLocations[i]);
-}
+printStoresSimsTable(storeLocations);
+// for (var i = 0; i < storeLocations.length; i++) {
+//   printStoreSalesSimsList(storeLocations[i]);
+// }
