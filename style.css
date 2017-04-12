@@ -103,9 +103,15 @@ h2 + p, #wrapper li {
 #loc-list li {
   color: #595A2C;
   display: inline;
-  padding: 0 .2%;
-  font-size: 1.35em;
+  padding: 0;
+  font-size: 1.37em;
   text-align: center;
+}
+
+#loc-list li:nth-child(even) {
+  padding: 0 .4%;
+  font-size: .8em;
+  line-height: 1.37em;
 }
 
 table {
