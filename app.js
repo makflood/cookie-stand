@@ -1,7 +1,7 @@
 'use strict';
 
-/** Creates a Store with a string for a location name, the minimum customers per hour, maximum cusomers per hour, and average cookies per customer **/
-function Store(location, minCustHr, maxCustHr, avgCookieCust) {
+/** Creates a CookieStore with a string for a location name, the minimum customers per hour, maximum cusomers per hour, and average cookies per customer **/
+function CookieStore(location, minCustHr, maxCustHr, avgCookieCust) {
   this.location = location;
   this.openAt = 6; // 6 am
   this.closeAt = 20; // 8 pm
@@ -12,12 +12,12 @@ function Store(location, minCustHr, maxCustHr, avgCookieCust) {
 }
 
 /** Returns a random number of customers for one hour at the store **/
-Store.prototype.randomCustHr = function() {
+CookieStore.prototype.randomCustHr = function() {
   return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
 };
 
 /** Simulates the number of cookies bought in each hour of a work day **/
-Store.prototype.simCookiesHrs = function() {
+CookieStore.prototype.simCookiesHrs = function() {
   this.cookiesHrs = [];
   var cookiesBought;
   for (var i = 0; i < (this.closeAt - this.openAt); i++) {
@@ -27,7 +27,7 @@ Store.prototype.simCookiesHrs = function() {
 };
 
 /** Given a table element reference, adds a tr element with the location name, all the simulated cookie data and the total for the day to the table **/
-Store.prototype.render = function(table) {
+CookieStore.prototype.render = function(table) {
   var cookiesDayRow = document.createElement('tr');
   cookiesDayRow.setAttribute('class', 'sales-data');
 
@@ -65,7 +65,7 @@ function numToTime(num) {
   }
 }
 
-/** adds the header row of times to the given table based on the hours of a given Store **/
+/** adds the header row of times to the given table based on the hours of a given CookieStore **/
 function renderSalesTableHead(table, store) {
   var headRow = document.createElement('tr');
   headRow.setAttribute('class', 'head-row');
@@ -134,16 +134,47 @@ function printStoresSimsTable(stores) {
     renderTotalsFoot(simCookieTable, stores);
 
     position.appendChild(simCookieTable);
+
+    return simCookieTable;
   }
 }
 
+function handleAddStoreSubmit(event) {
+  event.preventDefault();
+
+  var form = event.target;
+
+  // get user input
+  var location = form.locationInput.value;
+  var minCustHr = form.minCustHrInput.value;
+  var maxCustHr = form.maxCustHrInput.value;
+  var avgCookieCust = form.avgCookieCustInput.value;
+
+  // clear user input
+  form.locationInput.value = '';
+  form.minCustHrInput.value = '';
+  form.maxCustHrInput.value = '';
+  form.avgCookieCustInput.value = '';
+
+  // create the new store from input
+  var store = new CookieStore(location, minCustHr, maxCustHr, avgCookieCust);
+
+  storeLocations.push(store);
+
+  store.render(simCookieTable);
+
+}
+
 /** PRINTS THE LISTS TO THE PAGE **/
-var pikeStore = new Store('1st and Pike', 23, 65, 6.3);
-var airportStore = new Store('SeaTac Airport', 3, 24, 1.2);
-var centerStore = new Store('Seattle Center', 11, 38, 3.7);
-var capitolStore = new Store('Capitol Hill', 20, 38, 2.3);
-var alkiStore = new Store('Alki', 2, 16, 4.6);
+var pikeStore = new CookieStore('1st and Pike', 23, 65, 6.3);
+var airportStore = new CookieStore('SeaTac Airport', 3, 24, 1.2);
+var centerStore = new CookieStore('Seattle Center', 11, 38, 3.7);
+var capitolStore = new CookieStore('Capitol Hill', 20, 38, 2.3);
+var alkiStore = new CookieStore('Alki', 2, 16, 4.6);
 
 var storeLocations = [pikeStore, airportStore, centerStore, capitolStore, alkiStore];
 
-printStoresSimsTable(storeLocations);
+var simCookieTable = printStoresSimsTable(storeLocations);
+
+var addStoreForm = document.getElementById('add-store');
+addStoreForm.addEventListener('submit', handleAddStoreSubmit);

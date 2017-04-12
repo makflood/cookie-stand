@@ -8,10 +8,23 @@
 
   <body>
   <div id="wrapper">
+
     <main class="full-width">
       <h1> Sales Information </h1>
+
+      <form id="add-store">
+        <fieldset>
+          <input type="text" name="locationInput" placeholder="location" >
+          <input type="number" name="minCustHrInput" placeholder="minimum customers per hour" >
+          <input type="number" name="maxCustHrInput" placeholder="maximum customers per hour" >
+          <input type="number" step="0.1" name="avgCookieCustInput" placeholder="average cookies per customer" >
+          <button type="submit"> add to table </button>
+        </fieldset>
+      </form>
+
       <div id="store-data"></div>
     </main>
+
   </div> <!-- end wrapper -->
     <script src="app.js"></script>
   </body>
