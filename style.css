@@ -27,7 +27,7 @@ body {
 }
 
 #wrapper {
-  min-height: 100%;
+  height: 100%;
   width: 840px;
   max-width: 70%;
   margin: 0 auto;
@@ -50,7 +50,7 @@ aside {
 main {
   height: 100%;
   width: 78%;
-  background: #EFEFEF;
+  background: #f4fafc;
   margin-left: 2%;
   padding: 5%;
 }
@@ -95,7 +95,59 @@ h2 + p, #wrapper li {
   list-style: none;
 }
 
-#store-data li {
+#loc-list {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+#loc-list li {
+  color: #595A2C;
+  display: inline;
+  padding: 0;
+  font-size: 1.37em;
+  text-align: center;
+}
+
+#loc-list li:nth-child(even) {
+  padding: 0 .4%;
+  font-size: .8em;
+  line-height: 1.37em;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+td, th {
   font-family: 'Gill Sans', sans-serif;
+  text-align: center;
+  padding: 2px;
+  padding-bottom: 5px;
+  width: 40px;
+}
+
+tr td:first-child, tr th:first-child {
+  font-weight: normal;
+  text-align: right;
+  width: 103px;
+}
+
+.head-row {
+  vertical-align: bottom;
+}
+
+td {
   font-weight: lighter;
+}
+
+table tr:nth-child(even) {
+  background-color: #d7dcdd;
+}
+
+.full-width {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 }
