@@ -55,11 +55,6 @@ main {
   padding: 5%;
 }
 
-#sales {
-  width: 100%;
-  margin-left: 0;
-}
-
 @font-face {
   font-family: 'Cinzel Decorative', cursive;
   src: url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:bold,black');
@@ -98,6 +93,19 @@ h2 + p, #wrapper li {
 
 #wrapper li {
   list-style: none;
+}
+
+#loc-list {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+#loc-list li {
+  color: #595A2C;
+  display: inline;
+  padding: 0 .2%;
+  font-size: 1.35em;
+  text-align: center;
 }
 
 table {
