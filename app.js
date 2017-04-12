@@ -123,36 +123,11 @@ function printStoresSimsTable(stores) {
 
   if (position) {
     var simCookieTable = document.createElement('table');
-
     renderSalesTableHead(simCookieTable, stores[0]);
-
     for (var i = 0; i < stores.length; i++) {
       stores[i].render(simCookieTable);
     }
-
     renderTotalsFoot(simCookieTable, stores);
-    // container.setAttribute('class', 'sales-list');
-    //
-    // var locationHeading = document.createElement('h2');
-    // locationHeading.textContent = store.location;
-    // container.appendChild(locationHeading);
-    // var hrsCookiesList = document.createElement('ul');
-    // container.appendChild(hrsCookiesList);
-    //
-    // store.simCookiesHrs(); // activate simulation of cookies
-    // var hrCookiesEntry;
-    // var hour;
-    // var totCookies = 0;
-    // for (var i = 0; i < store.cookiesHrs.length; i++) {
-    //   hrCookiesEntry = document.createElement('li');
-    //   hour = store.openAt + i;
-    //   hrCookiesEntry.textContent = numToTime(hour) + ': ' + store.cookiesHrs[i] + ' cookies';
-    //   hrsCookiesList.appendChild(hrCookiesEntry);
-    //   totCookies += store.cookiesHrs[i];
-    // }
-    // var totCookiesEntry = document.createElement('li');
-    // totCookiesEntry.textContent = 'Total: ' + totCookies + ' cookies';
-    // hrsCookiesList.appendChild(totCookiesEntry);
 
     position.appendChild(simCookieTable);
   }
@@ -168,6 +143,3 @@ var alkiStore = new Store('Alki', 2, 16, 4.6);
 var storeLocations = [pikeStore, airportStore, centerStore, capitolStore, alkiStore];
 
 printStoresSimsTable(storeLocations);
-// for (var i = 0; i < storeLocations.length; i++) {
-//   printStoreSalesSimsList(storeLocations[i]);
-// }
