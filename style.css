@@ -40,6 +40,12 @@ body {
   max-width: 100%;
 }
 
+#cookies {
+  border: 2px #f44b13 solid;
+  padding: 2%;
+  margin: 0 auto 5%;
+}
+
 aside {
   margin-top: 5%;
   width: 20%;
