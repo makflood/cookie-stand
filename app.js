@@ -88,7 +88,6 @@ function renderSalesTableHead(table, store) {
 /** adds the footer row of totals to the given table based on an array of Stores **/
 function renderTotalsFoot(table, stores) {
   var footRow = document.getElementById('totals-row');
-  console.log(footRow);
   if (footRow) {
     footRow.parentNode.removeChild(footRow);
   }
@@ -144,7 +143,7 @@ function printStoresSimsTable(stores) {
   }
 }
 
-/** on submit event, creates a new CookieStore object from user input and adds the store to the table **/
+/** on submit event, creates a new CookieStore object from user input and adds the store to the table, updating the totals row **/
 function handleAddStoreSubmit(event) {
   event.preventDefault(); //no page reload
 
@@ -156,19 +155,46 @@ function handleAddStoreSubmit(event) {
   var maxCustHr = form.maxCustHrInput.value;
   var avgCookieCust = form.avgCookieCustInput.value;
 
-  // clear user input
-  form.locationInput.value = '';
-  form.minCustHrInput.value = '';
-  form.maxCustHrInput.value = '';
-  form.avgCookieCustInput.value = '';
+  console.log(minCustHr);
+  console.log(maxCustHr);
 
-  // create the new store from input
-  var store = new CookieStore(location, minCustHr, maxCustHr, avgCookieCust);
+  var warningDiv = document.getElementById('form-warning');
+  warningDiv.innerHTML = '';
+  var warningText = document.createElement('p');
 
-  storeLocations.push(store);
+  // check for user input
+  if (location === '' || minCustHr === '' || maxCustHr === '' || avgCookieCust === '') {
+    warningText.textContent = 'Please fill out all the fields.';
+    warningDiv.appendChild(warningText);
+  } else {
 
-  store.render(simCookieTable);
-  renderTotalsFoot(simCookieTable, storeLocations);
+    // check for valid numbers
+    if (isNaN(minCustHr) || isNaN(maxCustHr) || isNaN(avgCookieCust)) {
+      warningText.textContent = 'Please enter numbers for the amount of customers and the average amout of cookies.';
+      warningDiv.appendChild(warningText);
+    } else if (minCustHr < 0 || maxCustHr < 0 || avgCookieCust < 0) {
+      warningText.textContent = 'Please enter only positive numbers.';
+      warningDiv.appendChild(warningText);
+    } else if (parseInt(maxCustHr) < parseInt(minCustHr)) {
+      warningText.textContent = 'The maximum number of customers per hour must be larger than the minimum.';
+      warningDiv.appendChild(warningText);
+    } else {
+
+      // clear user input
+      form.locationInput.value = '';
+      form.minCustHrInput.value = '';
+      form.maxCustHrInput.value = '';
+      form.avgCookieCustInput.value = '';
+
+      // create the new store from input
+      var store = new CookieStore(location, minCustHr, maxCustHr, avgCookieCust);
+
+      storeLocations.push(store);
+
+      store.render(simCookieTable);
+      renderTotalsFoot(simCookieTable, storeLocations);
+    }
+  }
 }
 
 /** PRINTS THE LISTS TO THE PAGE **/
