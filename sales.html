@@ -12,21 +12,37 @@
     <main class="full-width">
       <h1> Sales Information </h1>
 
-      <form id="add-store">
+      <div id="store-data"></div>
+
+      <h2> Add a New Store Location </h2>
+      <form id="add-store" class="left">
         <fieldset>
-          <input type="text" name="locationInput" placeholder="location" required >
-          <input type="number" name="minCustHrInput" placeholder="minimum customers per hour" required >
-          <input type="number" name="maxCustHrInput" placeholder="maximum customers per hour" required >
-          <input type="number" step="0.1" name="avgCookieCustInput" placeholder="average cookies per customer" required >
-          <button type="submit"> add to table </button>
+          <ul>
+            <li>
+              <label>Location</label>
+              <input type="text" name="locationInput" placeholder="Name of Location" required >
+            </li>
+            <li>
+              <label>Minimum customers per hour</label>
+              <input type="number" name="minCustHrInput" placeholder="Number of Customers" required >
+            </li>
+            <li>
+              <label>Maximum customers per hour</label>
+              <input type="number" name="maxCustHrInput" placeholder="Number of Customers" required >
+            </li>
+            <li>
+              <label>Average cookies per customer</label>
+              <input type="number" step="0.1" name="avgCookieCustInput" placeholder="Number of Cookies" required >
+            </li>
+          </ul>
+              <button type="submit" class="right"> Add to table </button>
         </fieldset>
       </form>
 
-      <div id="form-warning">
+      <div id="form-warning" class="right"></div>
 
-      </div>
+      <div class="clear-fix"></div>
 
-      <div id="store-data"></div>
     </main>
 
   </div> <!-- end wrapper -->

@@ -155,9 +155,6 @@ function handleAddStoreSubmit(event) {
   var maxCustHr = form.maxCustHrInput.value;
   var avgCookieCust = form.avgCookieCustInput.value;
 
-  console.log(minCustHr);
-  console.log(maxCustHr);
-
   var warningDiv = document.getElementById('form-warning');
   warningDiv.innerHTML = '';
   var warningText = document.createElement('p');
@@ -187,7 +184,7 @@ function handleAddStoreSubmit(event) {
       form.avgCookieCustInput.value = '';
 
       // create the new store from input
-      var store = new CookieStore(location, minCustHr, maxCustHr, avgCookieCust);
+      var store = new CookieStore(location, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust));
 
       storeLocations.push(store);
 
