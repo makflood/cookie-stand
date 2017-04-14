@@ -16,10 +16,14 @@ function CookieStore(storeLocation, minCustHr, maxCustHr, avgCookieCust, storeAr
   this.maxCustHr = maxCustHr;
   this.avgCookieCust = avgCookieCust;
   this.cookiesHrs = [];
+  this.tossersHrs = [];
+  this.custHrByTosser = 20; // 20 customers per tosser
+  this.minTosser = 2;
   if (storeArray) {
     storeArray.push(this);
   }
   this.simCookiesHrs();
+  this.calculateTossers();
 }
 
 /**
@@ -35,10 +39,26 @@ Simulates the number of cookies bought in each hour of a work day
 **/
 CookieStore.prototype.simCookiesHrs = function() {
   this.cookiesHrs = [];
+  this.tossersHrs = [];
+  var customers;
   var cookiesBought;
   for (var i = 0; i < (this.closeAt - this.openAt); i++) {
-    cookiesBought = Math.round(this.randomCustHr() * this.avgCookieCust);
+    customers = this.randomCustHr();
+    this.tossersHrs.push(customers);
+    cookiesBought = Math.round(customers * this.avgCookieCust);
     this.cookiesHrs.push(cookiesBought);
+  }
+};
+
+/**
+Calculates the required cookie tossers for each hour from the maximum of the amount required to handle the number of customers and the minimum staff
+**/
+CookieStore.prototype.calculateTossers = function() {
+  var reqTosser;
+  for (var i = 0; i < this.tossersHrs.length; i++) {
+    reqTosser = Math.floor(this.tossersHrs[i] / this.custHrByTosser);
+    reqTosser = Math.max(reqTosser, this.minTosser);
+    this.tossersHrs[i] = reqTosser;
   }
 };
 
