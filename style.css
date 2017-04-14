@@ -11,7 +11,9 @@ html, body {
 }
 
 body {
-  background: #159fc1 linear-gradient(#159fc1, #05588c) fixed;
+  background-color: #159fc1;
+  background-image: url(speckles.png), linear-gradient(#159fc1, #05588c);
+  background-attachment: fixed;
 }
 
 .right {
