@@ -1,15 +1,15 @@
 'use strict';
 
 /**
-Creates a CookieStore with a string for a location name, the minimum customers per hour, maximum cusomers per hour, and average cookies per customer. Also adds the new object to the given array.
-@param location - string of the location name
+Creates a CookieStore with a string for a storeLocation name, the minimum customers per hour, maximum cusomers per hour, and average cookies per customer. Also adds the new object to the given array.
+@param storeLocation - string of the storeLocation name
        minCustHr - int of the minimum customers per hour
        maxCustHr - int of the maximum customers per hour
        avgCookieCust - float of the average cookies per customer
        storeArray - array for all the CookieStore objects
 **/
-function CookieStore(location, minCustHr, maxCustHr, avgCookieCust, storeArray) {
-  this.location = location;
+function CookieStore(storeLocation, minCustHr, maxCustHr, avgCookieCust, storeArray) {
+  this.storeLocation = storeLocation;
   this.openAt = 6; // 6 am
   this.closeAt = 20; // 8 pm
   this.minCustHr = minCustHr;
@@ -47,11 +47,11 @@ Given a table element reference, adds a tr element with the location name, all t
 **/
 CookieStore.prototype.render = function(table) {
   var cookiesDayRow = document.createElement('tr');
-  cookiesDayRow.setAttribute('class', 'sales-data');
+  cookiesDayRow.className = 'sales-data';
 
   var locationCell = document.createElement('td');
-  locationCell.setAttribute('class', 'loc-cell');
-  locationCell.textContent = this.location;
+  locationCell.className = 'loc-cell';
+  locationCell.textContent = this.storeLocation;
   cookiesDayRow.appendChild(locationCell);
 
   this.simCookiesHrs(); // activate simulation of cookies
@@ -94,7 +94,7 @@ Adds the header row of times to the given table based on the hours of a given Co
 **/
 function renderSalesTableHead(table, store) {
   var headRow = document.createElement('tr');
-  headRow.setAttribute('class', 'head-row');
+  headRow.className = 'head-row';
 
   headRow.appendChild(document.createElement('th')); //empty cell
 
@@ -122,10 +122,10 @@ function renderTotalsFoot(table, stores) {
     footRow.parentNode.removeChild(footRow);
   }
   footRow = document.createElement('tr');
-  footRow.setAttribute('id', 'totals-row');
+  footRow.className = 'totals-row';
 
   var totalCell = document.createElement('td');
-  totalCell.setAttribute('class', 'tot-cell');
+  totalCell.className = 'tot-cell';
   totalCell.textContent = 'Totals';
   footRow.appendChild(totalCell);
 
@@ -159,22 +159,20 @@ prints an table of the hourly sale simulations to the page
 function printStoresSimsTable(stores) {
   var position = document.getElementById('store-data');
 
-  if (position) {
-    var tableTitle = document.createElement('h2');
-    tableTitle.textContent = 'Cookies Needed By Location Each Day';
-    position.appendChild(tableTitle);
+  var tableTitle = document.createElement('h2');
+  tableTitle.textContent = 'Cookies Needed By Location Each Day';
+  position.appendChild(tableTitle);
 
-    var simCookieTable = document.createElement('table');
-    renderSalesTableHead(simCookieTable, stores[0]);
-    for (var i = 0; i < stores.length; i++) {
-      stores[i].render(simCookieTable);
-    }
-    renderTotalsFoot(simCookieTable, stores);
-
-    position.appendChild(simCookieTable);
-
-    return simCookieTable;
+  var simCookieTable = document.createElement('table');
+  renderSalesTableHead(simCookieTable, stores[0]);
+  for (var i = 0; i < stores.length; i++) {
+    stores[i].render(simCookieTable);
   }
+  renderTotalsFoot(simCookieTable, stores);
+
+  position.appendChild(simCookieTable);
+
+  return simCookieTable;
 }
 
 /**
@@ -187,7 +185,7 @@ function handleAddStoreSubmit(event) {
   var form = event.target;
 
   // get user input
-  var location = form.locationInput.value;
+  var storeLocation = form.locationInput.value;
   var minCustHr = form.minCustHrInput.value;
   var maxCustHr = form.maxCustHrInput.value;
   var avgCookieCust = form.avgCookieCustInput.value;
@@ -197,7 +195,7 @@ function handleAddStoreSubmit(event) {
   var warningText = document.createElement('p');
 
   // check for user input
-  if (location === '' || minCustHr === '' || maxCustHr === '' || avgCookieCust === '') {
+  if (storeLocation === '' || minCustHr === '' || maxCustHr === '' || avgCookieCust === '') {
     warningText.textContent = 'Please fill out all the fields.';
     warningDiv.appendChild(warningText);
   } else {
@@ -218,7 +216,7 @@ function handleAddStoreSubmit(event) {
       form.reset();
 
       // create the new store from input
-      var store = new CookieStore(location, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust), storeLocations);
+      var store = new CookieStore(storeLocation, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust), storeLocations);
 
       store.render(simCookieTable);
       renderTotalsFoot(simCookieTable, storeLocations);
