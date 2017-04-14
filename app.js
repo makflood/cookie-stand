@@ -19,6 +19,7 @@ function CookieStore(storeLocation, minCustHr, maxCustHr, avgCookieCust, storeAr
   if (storeArray) {
     storeArray.push(this);
   }
+  this.simCookiesHrs();
 }
 
 /**
@@ -54,7 +55,6 @@ CookieStore.prototype.render = function(table) {
   locationCell.textContent = this.storeLocation;
   cookiesDayRow.appendChild(locationCell);
 
-  this.simCookiesHrs(); // activate simulation of cookies
   var cookiesCell;
   var totCookies = 0;
   for (var i = 0; i < this.cookiesHrs.length; i++) {
