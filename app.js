@@ -285,10 +285,10 @@ function handleAddStoreSubmit(event) {
       form.reset();
 
       // create the new store from input
-      var store = new CookieStore(storeLocation, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust), storeLocations);
+      var store = new CookieStore(storeLocation, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust), allStoreLocations);
 
       store.render(simCookieTable);
-      renderTotalsFoot(simCookieTable, storeLocations);
+      renderTotalsFoot(simCookieTable, allStoreLocations);
 
       store.renderTossers(reqTosserTable);
     }
@@ -296,16 +296,16 @@ function handleAddStoreSubmit(event) {
 }
 
 /** PRINTS THE TABLE TO THE PAGE **/
-var storeLocations = [];
+var allStoreLocations = [];
 
-new CookieStore('1st and Pike', 23, 65, 6.3, storeLocations);
-new CookieStore('SeaTac Airport', 3, 24, 1.2, storeLocations);
-new CookieStore('Seattle Center', 11, 38, 3.7, storeLocations);
-new CookieStore('Capitol Hill', 20, 38, 2.3, storeLocations);
-new CookieStore('Alki', 2, 16, 4.6, storeLocations);
+new CookieStore('1st and Pike', 23, 65, 6.3, allStoreLocations);
+new CookieStore('SeaTac Airport', 3, 24, 1.2, allStoreLocations);
+new CookieStore('Seattle Center', 11, 38, 3.7, allStoreLocations);
+new CookieStore('Capitol Hill', 20, 38, 2.3, allStoreLocations);
+new CookieStore('Alki', 2, 16, 4.6, allStoreLocations);
 
-var simCookieTable = printStoresSimsTable(storeLocations);
-var reqTosserTable = printStoresTossersTable(storeLocations);
+var simCookieTable = printStoresSimsTable(allStoreLocations);
+var reqTosserTable = printStoresTossersTable(allStoreLocations);
 
 /** HANDLES THE FORM **/
 var addStoreForm = document.getElementById('add-store');
