@@ -63,10 +63,10 @@ CookieStore.prototype.calculateTossers = function() {
 };
 
 /**
-Given a table element reference, adds a tr element with the location name, all the simulated cookie data and the total for the day to the table
-@param table - a reference to a 'table' element
+Returns a tr element with the location name, all the simulated cookie data and the total for the day
+@return a reference to a table row of cookies
 **/
-CookieStore.prototype.render = function(table) {
+CookieStore.prototype.render = function() {
   var cookiesDayRow = document.createElement('tr');
   cookiesDayRow.className = 'sales-data';
 
@@ -87,14 +87,15 @@ CookieStore.prototype.render = function(table) {
   totCookiesCell.textContent = totCookies;
   cookiesDayRow.appendChild(totCookiesCell);
 
-  table.appendChild(cookiesDayRow);
+  // table.appendChild(cookiesDayRow);
+  return cookiesDayRow;
 };
 
 /**
-Given a table element reference, adds a tr element with the location name and all the required cookie tossers to the table
-@param table - a reference to a 'table' element
+Returns a tr element with the location name and all the required cookie tossers
+@return a reference to a table row of tossers
 **/
-CookieStore.prototype.renderTossers = function(table) {
+CookieStore.prototype.renderTossers = function() {
   var tossersDayRow = document.createElement('tr');
   tossersDayRow.className = 'sales-data';
 
@@ -110,7 +111,7 @@ CookieStore.prototype.renderTossers = function(table) {
     tossersDayRow.appendChild(tossersCell);
   }
 
-  table.appendChild(tossersDayRow);
+  return tossersDayRow;
 };
 
 /**
@@ -134,7 +135,7 @@ function numToTime(num) {
 Adds the header row of times to the given table based on the hours of a given CookieStore
 @param table - a reference to a 'table' element
        store - a CookieStore object
-       renderTotal - a boolean of whether to render the totals cell or not
+       renderTotal - a boolean of whether to  the totals cell or not
 **/
 function renderSalesTableHead(table, store, renderTotal) {
   var headRow = document.createElement('tr');
@@ -212,7 +213,7 @@ function printStoresSimsTable(stores) {
   var simCookieTable = document.createElement('table');
   renderSalesTableHead(simCookieTable, stores[0], true);
   for (var i = 0; i < stores.length; i++) {
-    stores[i].render(simCookieTable);
+    simCookieTable.appendChild(stores[i].render());
   }
   renderTotalsFoot(simCookieTable, stores);
 
@@ -236,7 +237,7 @@ function printStoresTossersTable(stores) {
   var reqTosserTable = document.createElement('table');
   renderSalesTableHead(reqTosserTable, stores[0], false);
   for (var i = 0; i < stores.length; i++) {
-    stores[i].renderTossers(reqTosserTable);
+    reqTosserTable.appendChild(stores[i].renderTossers());
   }
 
   position.appendChild(reqTosserTable);
@@ -254,7 +255,7 @@ function handleAddStoreSubmit(event) {
   var form = event.target;
 
   // get user input
-  var storeLocation = form.locationInput.value;
+  var storeLocation = form.locationInput.value.trim();
   var minCustHr = form.minCustHrInput.value;
   var maxCustHr = form.maxCustHrInput.value;
   var avgCookieCust = form.avgCookieCustInput.value;
@@ -281,16 +282,40 @@ function handleAddStoreSubmit(event) {
       warningDiv.appendChild(warningText);
     } else {
 
-      // clear user input
-      form.reset();
+      var alreadyAdded = false;
+      var storedIndex = -1;
+      var storedStore;
+      for (var i = 0; i < allStoreLocations.length; i++){
+        storedStore = allStoreLocations[i].storeLocation.toUpperCase();
+        alreadyAdded = storedStore === storeLocation.toUpperCase();
+        if (alreadyAdded) {
+          storedIndex = i;
+          i = allStoreLocations.length;
+        }
+      }
 
-      // create the new store from input
-      var store = new CookieStore(storeLocation, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust), allStoreLocations);
+      var store;
 
-      store.render(simCookieTable);
-      renderTotalsFoot(simCookieTable, allStoreLocations);
+      if (alreadyAdded) {
+        if (confirm(storeLocation + ' has already been added to the table.\nAre you sure you want to update this location?')) {
+          store = allStoreLocations[storedIndex];
+          var cookiesRow = document.querySelectorAll('#store-data .sales-data')[storedIndex];
+          var tossersRow = document.querySelectorAll('#tossers-data .sales-data')[storedIndex];
+          console.log(cookiesRow, tossersRow);
 
-      store.renderTossers(reqTosserTable);
+        }
+      } else {
+        // clear user input
+        form.reset();
+
+        // create the new store from input
+        store = new CookieStore(storeLocation, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust), allStoreLocations);
+        
+        simCookieTable.appendChild(store.render());
+        renderTotalsFoot(simCookieTable, allStoreLocations);
+
+        reqTosserTable.appendChild(store.renderTossers());
+      }
     }
   }
 }
