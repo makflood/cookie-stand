@@ -29,30 +29,22 @@ body {
 }
 
 #wrapper {
-  /*height: 100%;*/
   width: 840px;
   max-width: 70%;
   margin: 0 auto;
-  position: relative;
-}
-
-#fish {
-  max-height: 90%;
-  width: auto;
-  max-width: 100%;
-}
-
-#cookies {
-  border: 2px #f44b13 solid;
-  padding: 2%;
-  margin: 0 auto 5%;
 }
 
 aside {
   margin-top: 5%;
   width: 20%;
   height: 100%;
-  position: relative;
+}
+
+.fish {
+  max-height: 90%;
+  width: auto;
+  max-width: 100%;
+  margin-bottom: 40%;
 }
 
 main {
@@ -111,6 +103,40 @@ main h1 {
   margin-bottom: 5%;
 }
 
+#family {
+  border: 2px #f44b13 solid;
+  padding: 2%;
+  margin: 0 auto 5%;
+}
+
+.call-to-action {
+  font-family: 'Gill Sans', sans-serif;
+  font-size: 1.2em;
+  background-color: transparent;
+  border: 1px #f44b13 solid;
+  border-radius: 5px;
+  color: #f44b13;
+  width: auto;
+  padding: 3% 6%;
+  margin: 3%;
+}
+
+.call-to-action:hover {
+  background-color: #f44b13;
+  color: #f4fafc;
+}
+
+.call-to-action:active {
+  background-color: #05588c;
+  border-color: #05588c;
+}
+
+section {
+  background: #9AD6E4;
+  padding: 3%;
+  margin: 4%;
+}
+
 h2 {
   font-size: 2em;
   line-height: .95em;
@@ -128,12 +154,12 @@ h2 + p, #wrapper li {
   list-style: none;
 }
 
-#loc-list {
+#loc-list{
   text-align: center;
   margin-bottom: 5%;
 }
 
-#loc-list li {
+#loc-list li, #copyright li {
   color: #595A2C;
   display: inline;
   padding: 0;
@@ -144,7 +170,46 @@ h2 + p, #wrapper li {
 #loc-list li:nth-child(even) {
   padding: 0 .4%;
   font-size: .8em;
-  line-height: 1.37em;
+  vertical-align: 10%;
+}
+
+#locations-box {
+  width: 55%;
+  margin-left: 0;
+}
+
+a {
+  color: #05588c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section h2 {
+  font-size: 1.5em;
+}
+
+section li, section p {
+  margin-left: 4%;
+}
+
+#locations-text{
+  height: 100%;
+  vertical-align: middle;
+  padding-top: 15%;
+}
+
+#copyright {
+  text-align: center;
+  margin-top: 10%;
+}
+
+#copyright li {
+  display: inline-block;
+  font-size: .9em;
+  width: 25%;
 }
 
 table {
