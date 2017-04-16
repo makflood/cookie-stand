@@ -117,7 +117,7 @@ main h1 {
 .call-to-action {
   font-family: 'Gill Sans', sans-serif;
   font-size: 1.2em;
-  background-color: transparent;
+  background-color: #f4fafc;
   border: 1px #f44b13 solid;
   border-radius: 5px;
   color: #f44b13;
@@ -229,6 +229,24 @@ section li, section p {
   width: 36%;
   display: inline-block;
   vertical-align: middle;
+}
+
+#store {
+  padding: 5%;
+  position: relative;
+  background: transparent;
+  border: 2px #9AD6E4 solid;
+}
+
+#store img {
+  width: 30%;
+  margin-right: 5%;
+}
+
+#store button {
+  /*position: absolute;*/
+  margin-bottom: 0;
+  margin-right: 0;
 }
 
 #copyright {
