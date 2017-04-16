@@ -298,11 +298,25 @@ function handleAddStoreSubmit(event) {
 
       if (alreadyAdded) {
         if (confirm(storeLocation + ' has already been added to the table.\nAre you sure you want to update this location?')) {
+          // clear user input
+          form.reset();
+
           store = allStoreLocations[storedIndex];
           var cookiesRow = document.querySelectorAll('#store-data .sales-data')[storedIndex];
           var tossersRow = document.querySelectorAll('#tossers-data .sales-data')[storedIndex];
           console.log(cookiesRow, tossersRow);
 
+          store.minCustHr = minCustHr;
+          store.maxCustHr = maxCustHr;
+          store.avgCookieCust = avgCookieCust;
+
+          store.simCookiesHrs();
+          store.calculateTossers();
+
+          cookiesRow.parentElement.replaceChild(store.render(), cookiesRow);
+          renderTotalsFoot(simCookieTable, allStoreLocations);
+
+          tossersRow.parentElement.replaceChild(store.renderTossers(), tossersRow);
         }
       } else {
         // clear user input
@@ -310,7 +324,7 @@ function handleAddStoreSubmit(event) {
 
         // create the new store from input
         store = new CookieStore(storeLocation, parseInt(minCustHr), parseInt(maxCustHr), parseFloat(avgCookieCust), allStoreLocations);
-        
+
         simCookieTable.appendChild(store.render());
         renderTotalsFoot(simCookieTable, allStoreLocations);
 
