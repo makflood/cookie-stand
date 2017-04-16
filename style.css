@@ -85,6 +85,10 @@ input, button {
   color: #f4fafc;
 }
 
+img {
+  width: auto;
+}
+
 h1, h2, p, #wrapper li {
   font-family: Garamond, serif;
   margin-bottom: 2%;
@@ -107,6 +111,7 @@ main h1 {
   border: 2px #f44b13 solid;
   padding: 2%;
   margin: 0 auto 5%;
+  width: 100%;
 }
 
 .call-to-action {
@@ -134,7 +139,7 @@ main h1 {
 section {
   background: #9AD6E4;
   padding: 3%;
-  margin: 4%;
+  margin: 5%;
 }
 
 h2 {
@@ -173,9 +178,14 @@ h2 + p, #wrapper li {
   vertical-align: 10%;
 }
 
+#fish-cookies {
+  max-width: 100%;
+  margin: 5% 5% 0 0;
+}
+
 #locations-box {
   width: 55%;
-  margin-left: 0;
+  margin-right: 0;
 }
 
 a {
@@ -195,10 +205,30 @@ section li, section p {
   margin-left: 4%;
 }
 
-#locations-text{
+.explain-text {
   height: 100%;
   vertical-align: middle;
-  padding-top: 15%;
+  padding-top: 13%;
+}
+
+#home-fish-cutter, #home-fish-cookie {
+  width: 25%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#home-fish-cutter {
+  margin-right: 5%;
+}
+
+#home-fish-cookie {
+  margin-left: 5%;
+}
+
+#new-info {
+  width: 36%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #copyright {
