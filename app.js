@@ -87,7 +87,6 @@ CookieStore.prototype.render = function() {
   totCookiesCell.textContent = totCookies;
   cookiesDayRow.appendChild(totCookiesCell);
 
-  // table.appendChild(cookiesDayRow);
   return cookiesDayRow;
 };
 
