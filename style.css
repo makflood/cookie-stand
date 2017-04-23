@@ -12,7 +12,7 @@ html, body {
 
 body {
   background-color: #159fc1;
-  background-image: url(speckles.png), linear-gradient(#159fc1, #05588c);
+  background-image: url(images/speckles.png), linear-gradient(#159fc1, #05588c);
   background-attachment: fixed;
 }
 
@@ -29,30 +29,23 @@ body {
 }
 
 #wrapper {
-  /*height: 100%;*/
+  min-width: 360px;
   width: 840px;
   max-width: 70%;
   margin: 0 auto;
-  position: relative;
-}
-
-#fish {
-  max-height: 90%;
-  width: auto;
-  max-width: 100%;
-}
-
-#cookies {
-  border: 2px #f44b13 solid;
-  padding: 2%;
-  margin: 0 auto 5%;
 }
 
 aside {
   margin-top: 5%;
   width: 20%;
   height: 100%;
-  position: relative;
+}
+
+.fish {
+  max-height: 90%;
+  width: auto;
+  max-width: 100%;
+  margin-bottom: 40%;
 }
 
 main {
@@ -93,9 +86,8 @@ input, button {
   color: #f4fafc;
 }
 
-@font-face {
-  font-family: 'Cinzel Decorative', cursive;
-  src: url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:bold,black');
+img {
+  width: auto;
 }
 
 h1, h2, p, #wrapper li {
@@ -116,6 +108,41 @@ main h1 {
   margin-bottom: 5%;
 }
 
+#family {
+  border: 2px #f44b13 solid;
+  padding: 2%;
+  margin: 0 auto 5%;
+  width: 100%;
+}
+
+.call-to-action {
+  font-family: 'Gill Sans', sans-serif;
+  font-size: 1.2em;
+  background-color: #f4fafc;
+  border: 1px #f44b13 solid;
+  border-radius: 5px;
+  color: #f44b13;
+  width: auto;
+  padding: 3% 6%;
+  margin: 3%;
+}
+
+.call-to-action:hover {
+  background-color: #f44b13;
+  color: #f4fafc;
+}
+
+.call-to-action:active {
+  background-color: #05588c;
+  border-color: #05588c;
+}
+
+section {
+  background: #9AD6E4;
+  padding: 3%;
+  margin: 5%;
+}
+
 h2 {
   font-size: 2em;
   line-height: .95em;
@@ -133,12 +160,12 @@ h2 + p, #wrapper li {
   list-style: none;
 }
 
-#loc-list {
+#loc-list{
   text-align: center;
   margin-bottom: 5%;
 }
 
-#loc-list li {
+#loc-list li, #copyright li {
   color: #595A2C;
   display: inline;
   padding: 0;
@@ -149,7 +176,88 @@ h2 + p, #wrapper li {
 #loc-list li:nth-child(even) {
   padding: 0 .4%;
   font-size: .8em;
-  line-height: 1.37em;
+  vertical-align: 10%;
+}
+
+#fish-cookies {
+  max-width: 100%;
+  margin: 5% 5% 0 0;
+}
+
+#locations-box {
+  width: 55%;
+  margin-right: 0;
+}
+
+a {
+  color: #05588c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section h2 {
+  font-size: 1.5em;
+}
+
+section li, section p {
+  margin-left: 4%;
+}
+
+.explain-text {
+  height: 100%;
+  vertical-align: middle;
+  padding-top: 13%;
+}
+
+#home-fish-cutter, #home-fish-cookie {
+  width: 25%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#home-fish-cutter {
+  margin-right: 5%;
+}
+
+#home-fish-cookie {
+  margin-left: 5%;
+}
+
+#new-info {
+  width: 36%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#store {
+  padding: 5%;
+  position: relative;
+  background: transparent;
+  border: 2px #9AD6E4 solid;
+}
+
+#store img {
+  width: 30%;
+  margin-right: 5%;
+}
+
+#store button {
+  margin-bottom: 0;
+  margin-right: 0;
+}
+
+#copyright {
+  text-align: center;
+  margin-top: 10%;
+}
+
+#copyright li {
+  display: inline-block;
+  font-size: .9em;
+  width: 25%;
 }
 
 table {
